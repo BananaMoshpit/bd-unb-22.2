@@ -1,0 +1,3 @@
+- [ ] Popular banco
+- [ ] Atualizar (personalizar) minimundo
+- [ ] Checar se banco condiz com minimundo

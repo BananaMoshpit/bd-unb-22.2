@@ -1,0 +1,23 @@
+Corretora de produtos de investimento:
+ Uma corretora oferece os seguinte produtos de investimento: 
+ - Tesouro Direto
+ - Fundo de Investimento
+ - Renda Fixa
+ - Renda variavel. 
+
+  Dados da tabela Tesouro Direto: nome do produto, data de vencimento, indexador (IPCA, SELIC, IPG), taxa de juro mensal, taxa de juro anual e valor unitario. 
+
+  Dados da tabela Fundo de Investimento: classe (ação, cambial, multimercado, renda fixa), prazo de resgate (6, 12, 24, 36, 48 ou 60 meses), nome do produto, valor minimo de aplicação, data do resgate, dentre outros dados que achar necessario.
+ 
+  Dados da tabela Renda Fixa e variavel: classe (PL, ABC, EDC, ALF, BLC), nome da empresa emissora, prazo de vencimento (em meses), taxa de remuneragao do produto de investimento, horario limite para aplicacdo no produto de investimento e valor minimo de aplicagdo no produto de investimento. 
+
+
+Por meio desse sistema, qualquer usuario/cliente pode acessar dados sobre os produtos de investimento. Para acessar os outros servic¢os providos pelo sistema, 0 usuario precisa ser autenticado informando CPF e senha. 
+Para ser autenticado, o usuario precisa estar cadastrado (e com todos os atributos necessarios). 
+Ao se cadastrar, o usuario deve informar os seguintes dados: Carteira de Identidade, nome, data de nascimento, renda mensal, endereco, telefone, CEP, senha e CPF; deve também cadastrar uma conta corrente, informando os seguintes dados: cddigo de banco, codigo de agéncia e numero de conta. 
+Uma vez autenticado, o usuario tem acesso aos seguintes servicos: apresentar dados do seu cadastro, alterar dados do seu cadastro (exceto CPF), apresentar dados da sua conta, alterar dados da sua conta, realizar aplica¢ao em produto de investimento, cancelar aplicacao em produto de investimento e listar aplicacoes realizadas em produtos de investimento.
+
+Em termos de relatdério é preciso imprimir:
+ Lista dos produtos
+ Lista dos usuarios por produtos
+ Produtos investidos mensalmente.
