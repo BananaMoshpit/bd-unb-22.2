@@ -38,7 +38,7 @@ DROP TABLE IF EXISTS `corretora_investimentos_db`.`estado_civil` ;
 
 CREATE TABLE IF NOT EXISTS `corretora_investimentos_db`.`estado_civil` (
   `idestado_civil` INT NOT NULL,
-  `estado_civilcol` VARCHAR(45) NULL,
+  `estado_civil` VARCHAR(45) NULL,
   PRIMARY KEY (`idestado_civil`))
 ENGINE = InnoDB;
 
@@ -50,7 +50,7 @@ DROP TABLE IF EXISTS `corretora_investimentos_db`.`naturalidade` ;
 
 CREATE TABLE IF NOT EXISTS `corretora_investimentos_db`.`naturalidade` (
   `idnaturalidade` INT NOT NULL,
-  `naturalidadecol` VARCHAR(45) NULL,
+  `naturalidade` VARCHAR(45) NULL,
   PRIMARY KEY (`idnaturalidade`))
 ENGINE = InnoDB;
 
@@ -276,7 +276,7 @@ CREATE TABLE IF NOT EXISTS `corretora_investimentos_db`.`telefone` (
   `idtelefone` INT NOT NULL,
   `cod_pais` VARCHAR(45) NULL,
   `DDD` VARCHAR(45) NULL,
-  `telefonecol` VARCHAR(45) NULL,
+  `telefone` VARCHAR(45) NULL,
   PRIMARY KEY (`idtelefone`))
 ENGINE = InnoDB;
 
@@ -353,7 +353,7 @@ CREATE TABLE IF NOT EXISTS `corretora_investimentos_db`.`fundo_investimento` (
   `idfundo_investimento` INT NOT NULL,
   `prazo_resgate` VARCHAR(45) NULL,
   `nome_produto` VARCHAR(450) NULL,
-  `fundo_investimentocol` VARCHAR(45) NULL,
+  `fundo_investimento` VARCHAR(45) NULL,
   `minimo_aplicavel` VARCHAR(45) NOT NULL,
   `data_resgate` VARCHAR(45) NULL,
   `fundo_investimentocol1` VARCHAR(45) NULL,
@@ -405,7 +405,7 @@ CREATE TABLE IF NOT EXISTS `corretora_investimentos_db`.`conta_corrente` (
   `idconta_corrente` INT NOT NULL,
   `cod_banco` VARCHAR(45) NULL,
   `cod_agencia` VARCHAR(45) NULL,
-  `conta_correntecol` VARCHAR(45) NULL,
+  `conta_corrente` VARCHAR(45) NULL,
   PRIMARY KEY (`idconta_corrente`))
 ENGINE = InnoDB;
 
