@@ -7,23 +7,24 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
--- -----------------------------------------------------
--- Schema mydb
--- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `mydb` ;
 
 -- -----------------------------------------------------
--- Schema mydb
+-- DATABASE corretora_investimentos
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+DROP DATABASE IF EXISTS `corretora_investimentos_db` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`sexo`
+-- DATABASE corretora_investimentos
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`sexo` ;
+CREATE DATABASE IF NOT EXISTS `corretora_investimentos_db` DEFAULT CHARACTER SET utf8 ;
+USE `corretora_investimentos_db` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`sexo` (
+-- -----------------------------------------------------
+-- Table `corretora_investimentos_db`.`sexo`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `corretora_investimentos_db`.`sexo` ;
+
+CREATE TABLE IF NOT EXISTS `corretora_investimentos_db`.`sexo` (
   `idsexo` INT NOT NULL,
   `sexo` VARCHAR(45) NULL,
   PRIMARY KEY (`idsexo`))
@@ -31,11 +32,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`estado_civil`
+-- Table `corretora_investimentos_db`.`estado_civil`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`estado_civil` ;
+DROP TABLE IF EXISTS `corretora_investimentos_db`.`estado_civil` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`estado_civil` (
+CREATE TABLE IF NOT EXISTS `corretora_investimentos_db`.`estado_civil` (
   `idestado_civil` INT NOT NULL,
   `estado_civilcol` VARCHAR(45) NULL,
   PRIMARY KEY (`idestado_civil`))
@@ -43,11 +44,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`naturalidade`
+-- Table `corretora_investimentos_db`.`naturalidade`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`naturalidade` ;
+DROP TABLE IF EXISTS `corretora_investimentos_db`.`naturalidade` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`naturalidade` (
+CREATE TABLE IF NOT EXISTS `corretora_investimentos_db`.`naturalidade` (
   `idnaturalidade` INT NOT NULL,
   `naturalidadecol` VARCHAR(45) NULL,
   PRIMARY KEY (`idnaturalidade`))
@@ -55,11 +56,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`cargo`
+-- Table `corretora_investimentos_db`.`cargo`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`cargo` ;
+DROP TABLE IF EXISTS `corretora_investimentos_db`.`cargo` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`cargo` (
+CREATE TABLE IF NOT EXISTS `corretora_investimentos_db`.`cargo` (
   `idcargo` INT NOT NULL,
   `nome` VARCHAR(450) NULL,
   PRIMARY KEY (`idcargo`))
@@ -67,11 +68,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`filiacao`
+-- Table `corretora_investimentos_db`.`filiacao`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`filiacao` ;
+DROP TABLE IF EXISTS `corretora_investimentos_db`.`filiacao` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`filiacao` (
+CREATE TABLE IF NOT EXISTS `corretora_investimentos_db`.`filiacao` (
   `idfiliacao` INT NOT NULL,
   `nome` VARCHAR(450) NULL,
   PRIMARY KEY (`idfiliacao`))
@@ -79,11 +80,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`cargo_has_filiacao`
+-- Table `corretora_investimentos_db`.`cargo_has_filiacao`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`cargo_has_filiacao` ;
+DROP TABLE IF EXISTS `corretora_investimentos_db`.`cargo_has_filiacao` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`cargo_has_filiacao` (
+CREATE TABLE IF NOT EXISTS `corretora_investimentos_db`.`cargo_has_filiacao` (
   `cargo_idcargo` INT NOT NULL,
   `filiacao_idfiliacao` INT NOT NULL,
   PRIMARY KEY (`cargo_idcargo`, `filiacao_idfiliacao`),
@@ -91,23 +92,23 @@ CREATE TABLE IF NOT EXISTS `mydb`.`cargo_has_filiacao` (
   INDEX `fk_cargo_has_filiacao_cargo1_idx` (`cargo_idcargo` ASC) VISIBLE,
   CONSTRAINT `fk_cargo_has_filiacao_cargo1`
     FOREIGN KEY (`cargo_idcargo`)
-    REFERENCES `mydb`.`cargo` (`idcargo`)
+    REFERENCES `corretora_investimentos_db`.`cargo` (`idcargo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_cargo_has_filiacao_filiacao1`
     FOREIGN KEY (`filiacao_idfiliacao`)
-    REFERENCES `mydb`.`filiacao` (`idfiliacao`)
+    REFERENCES `corretora_investimentos_db`.`filiacao` (`idfiliacao`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`pais`
+-- Table `corretora_investimentos_db`.`pais`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`pais` ;
+DROP TABLE IF EXISTS `corretora_investimentos_db`.`pais` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`pais` (
+CREATE TABLE IF NOT EXISTS `corretora_investimentos_db`.`pais` (
   `idpais` INT NOT NULL,
   `nome` VARCHAR(450) NULL,
   PRIMARY KEY (`idpais`))
@@ -115,11 +116,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`UF`
+-- Table `corretora_investimentos_db`.`UF`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`UF` ;
+DROP TABLE IF EXISTS `corretora_investimentos_db`.`UF` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`UF` (
+CREATE TABLE IF NOT EXISTS `corretora_investimentos_db`.`UF` (
   `idUF` INT NOT NULL,
   `nome` VARCHAR(450) NOT NULL,
   `pais_idpais` INT NOT NULL,
@@ -127,18 +128,18 @@ CREATE TABLE IF NOT EXISTS `mydb`.`UF` (
   INDEX `fk_UF_pais1_idx` (`pais_idpais` ASC) VISIBLE,
   CONSTRAINT `fk_UF_pais1`
     FOREIGN KEY (`pais_idpais`)
-    REFERENCES `mydb`.`pais` (`idpais`)
+    REFERENCES `corretora_investimentos_db`.`pais` (`idpais`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`cidade`
+-- Table `corretora_investimentos_db`.`cidade`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`cidade` ;
+DROP TABLE IF EXISTS `corretora_investimentos_db`.`cidade` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`cidade` (
+CREATE TABLE IF NOT EXISTS `corretora_investimentos_db`.`cidade` (
   `idcidade` INT NOT NULL,
   `nome` VARCHAR(450) NOT NULL,
   `UF_idUF` INT NOT NULL,
@@ -146,18 +147,18 @@ CREATE TABLE IF NOT EXISTS `mydb`.`cidade` (
   INDEX `fk_cidade_UF1_idx` (`UF_idUF` ASC) VISIBLE,
   CONSTRAINT `fk_cidade_UF1`
     FOREIGN KEY (`UF_idUF`)
-    REFERENCES `mydb`.`UF` (`idUF`)
+    REFERENCES `corretora_investimentos_db`.`UF` (`idUF`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`bairro`
+-- Table `corretora_investimentos_db`.`bairro`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`bairro` ;
+DROP TABLE IF EXISTS `corretora_investimentos_db`.`bairro` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`bairro` (
+CREATE TABLE IF NOT EXISTS `corretora_investimentos_db`.`bairro` (
   `idbairro` INT NOT NULL,
   `nome` VARCHAR(450) NOT NULL,
   `cidade_idcidade` INT NOT NULL,
@@ -165,18 +166,18 @@ CREATE TABLE IF NOT EXISTS `mydb`.`bairro` (
   INDEX `fk_bairro_cidade1_idx` (`cidade_idcidade` ASC) VISIBLE,
   CONSTRAINT `fk_bairro_cidade1`
     FOREIGN KEY (`cidade_idcidade`)
-    REFERENCES `mydb`.`cidade` (`idcidade`)
+    REFERENCES `corretora_investimentos_db`.`cidade` (`idcidade`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`endereco`
+-- Table `corretora_investimentos_db`.`endereco`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`endereco` ;
+DROP TABLE IF EXISTS `corretora_investimentos_db`.`endereco` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`endereco` (
+CREATE TABLE IF NOT EXISTS `corretora_investimentos_db`.`endereco` (
   `idendereco` INT NOT NULL,
   `logradouro` VARCHAR(450) NOT NULL,
   `complemento` VARCHAR(45) NULL,
@@ -185,18 +186,18 @@ CREATE TABLE IF NOT EXISTS `mydb`.`endereco` (
   INDEX `fk_endereco_bairro1_idx` (`bairro_idbairro` ASC) VISIBLE,
   CONSTRAINT `fk_endereco_bairro1`
     FOREIGN KEY (`bairro_idbairro`)
-    REFERENCES `mydb`.`bairro` (`idbairro`)
+    REFERENCES `corretora_investimentos_db`.`bairro` (`idbairro`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`escolaridade`
+-- Table `corretora_investimentos_db`.`escolaridade`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`escolaridade` ;
+DROP TABLE IF EXISTS `corretora_investimentos_db`.`escolaridade` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`escolaridade` (
+CREATE TABLE IF NOT EXISTS `corretora_investimentos_db`.`escolaridade` (
   `idescolaridade` INT NOT NULL,
   `tipo` VARCHAR(45) NOT NULL,
   `descricao` VARCHAR(450) NULL,
@@ -205,11 +206,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`pessoa`
+-- Table `corretora_investimentos_db`.`pessoa`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`pessoa` ;
+DROP TABLE IF EXISTS `corretora_investimentos_db`.`pessoa` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`pessoa` (
+CREATE TABLE IF NOT EXISTS `corretora_investimentos_db`.`pessoa` (
   `idpessoa` INT NOT NULL,
   `nome` VARCHAR(450) NOT NULL,
   `cpf` VARCHAR(45) NOT NULL,
@@ -235,43 +236,43 @@ CREATE TABLE IF NOT EXISTS `mydb`.`pessoa` (
   INDEX `fk_pessoa_escolaridade1_idx` (`escolaridade_idescolaridade` ASC) VISIBLE,
   CONSTRAINT `fk_pessoa_sexo`
     FOREIGN KEY (`sexo_idsexo`)
-    REFERENCES `mydb`.`sexo` (`idsexo`)
+    REFERENCES `corretora_investimentos_db`.`sexo` (`idsexo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_pessoa_estado_civil1`
     FOREIGN KEY (`estado_civil_idestado_civil`)
-    REFERENCES `mydb`.`estado_civil` (`idestado_civil`)
+    REFERENCES `corretora_investimentos_db`.`estado_civil` (`idestado_civil`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_pessoa_naturalidade1`
     FOREIGN KEY (`naturalidade_idnaturalidade`)
-    REFERENCES `mydb`.`naturalidade` (`idnaturalidade`)
+    REFERENCES `corretora_investimentos_db`.`naturalidade` (`idnaturalidade`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_pessoa_cargo_has_filiacao1`
     FOREIGN KEY (`cargo_has_filiacao_cargo_idcargo` , `cargo_has_filiacao_filiacao_idfiliacao`)
-    REFERENCES `mydb`.`cargo_has_filiacao` (`cargo_idcargo` , `filiacao_idfiliacao`)
+    REFERENCES `corretora_investimentos_db`.`cargo_has_filiacao` (`cargo_idcargo` , `filiacao_idfiliacao`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_pessoa_endereco1`
     FOREIGN KEY (`endereco_idendereco`)
-    REFERENCES `mydb`.`endereco` (`idendereco`)
+    REFERENCES `corretora_investimentos_db`.`endereco` (`idendereco`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_pessoa_escolaridade1`
     FOREIGN KEY (`escolaridade_idescolaridade`)
-    REFERENCES `mydb`.`escolaridade` (`idescolaridade`)
+    REFERENCES `corretora_investimentos_db`.`escolaridade` (`idescolaridade`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`telefone`
+-- Table `corretora_investimentos_db`.`telefone`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`telefone` ;
+DROP TABLE IF EXISTS `corretora_investimentos_db`.`telefone` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`telefone` (
+CREATE TABLE IF NOT EXISTS `corretora_investimentos_db`.`telefone` (
   `idtelefone` INT NOT NULL,
   `cod_pais` VARCHAR(45) NULL,
   `DDD` VARCHAR(45) NULL,
@@ -281,11 +282,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`pessoa_has_telefone`
+-- Table `corretora_investimentos_db`.`pessoa_has_telefone`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`pessoa_has_telefone` ;
+DROP TABLE IF EXISTS `corretora_investimentos_db`.`pessoa_has_telefone` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`pessoa_has_telefone` (
+CREATE TABLE IF NOT EXISTS `corretora_investimentos_db`.`pessoa_has_telefone` (
   `pessoa_idpessoa` INT NOT NULL,
   `pessoa_sexo_idsexo` INT NOT NULL,
   `pessoa_filiacao_idfiliacao` INT NOT NULL,
@@ -297,23 +298,23 @@ CREATE TABLE IF NOT EXISTS `mydb`.`pessoa_has_telefone` (
   INDEX `fk_pessoa_has_telefone_pessoa1_idx` (`pessoa_idpessoa` ASC, `pessoa_sexo_idsexo` ASC, `pessoa_filiacao_idfiliacao` ASC, `pessoa_estado_civil_idestado_civil` ASC, `pessoa_naturalidade_idnaturalidade` ASC) VISIBLE,
   CONSTRAINT `fk_pessoa_has_telefone_pessoa1`
     FOREIGN KEY (`pessoa_idpessoa` , `pessoa_sexo_idsexo` , `pessoa_estado_civil_idestado_civil` , `pessoa_naturalidade_idnaturalidade`)
-    REFERENCES `mydb`.`pessoa` (`idpessoa` , `sexo_idsexo` , `estado_civil_idestado_civil` , `naturalidade_idnaturalidade`)
+    REFERENCES `corretora_investimentos_db`.`pessoa` (`idpessoa` , `sexo_idsexo` , `estado_civil_idestado_civil` , `naturalidade_idnaturalidade`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_pessoa_has_telefone_telefone1`
     FOREIGN KEY (`telefone_idtelefone`)
-    REFERENCES `mydb`.`telefone` (`idtelefone`)
+    REFERENCES `corretora_investimentos_db`.`telefone` (`idtelefone`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`indexador_t_dir`
+-- Table `corretora_investimentos_db`.`indexador_t_dir`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`indexador_t_dir` ;
+DROP TABLE IF EXISTS `corretora_investimentos_db`.`indexador_t_dir` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`indexador_t_dir` (
+CREATE TABLE IF NOT EXISTS `corretora_investimentos_db`.`indexador_t_dir` (
   `idindexador_t_dir` INT NOT NULL,
   `nome` VARCHAR(45) NULL,
   PRIMARY KEY (`idindexador_t_dir`))
@@ -321,11 +322,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`tesouro_direto`
+-- Table `corretora_investimentos_db`.`tesouro_direto`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`tesouro_direto` ;
+DROP TABLE IF EXISTS `corretora_investimentos_db`.`tesouro_direto` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`tesouro_direto` (
+CREATE TABLE IF NOT EXISTS `corretora_investimentos_db`.`tesouro_direto` (
   `idtesouro_direto` INT NOT NULL,
   `nome` VARCHAR(450) NULL,
   `vencimento` DATE NULL,
@@ -337,18 +338,18 @@ CREATE TABLE IF NOT EXISTS `mydb`.`tesouro_direto` (
   INDEX `fk_tesouro_direto_indexador_t_dir1_idx` (`indexador_t_dir_idindexador_t_dir` ASC) VISIBLE,
   CONSTRAINT `fk_tesouro_direto_indexador_t_dir1`
     FOREIGN KEY (`indexador_t_dir_idindexador_t_dir`)
-    REFERENCES `mydb`.`indexador_t_dir` (`idindexador_t_dir`)
+    REFERENCES `corretora_investimentos_db`.`indexador_t_dir` (`idindexador_t_dir`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`fundo_investimento`
+-- Table `corretora_investimentos_db`.`fundo_investimento`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`fundo_investimento` ;
+DROP TABLE IF EXISTS `corretora_investimentos_db`.`fundo_investimento` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`fundo_investimento` (
+CREATE TABLE IF NOT EXISTS `corretora_investimentos_db`.`fundo_investimento` (
   `idfundo_investimento` INT NOT NULL,
   `prazo_resgate` VARCHAR(45) NULL,
   `nome_produto` VARCHAR(450) NULL,
@@ -361,11 +362,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`empresa_emissora`
+-- Table `corretora_investimentos_db`.`empresa_emissora`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`empresa_emissora` ;
+DROP TABLE IF EXISTS `corretora_investimentos_db`.`empresa_emissora` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`empresa_emissora` (
+CREATE TABLE IF NOT EXISTS `corretora_investimentos_db`.`empresa_emissora` (
   `idempresa_emissora` INT NOT NULL,
   `nome` VARCHAR(450) NULL,
   PRIMARY KEY (`idempresa_emissora`))
@@ -373,11 +374,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`renda_fixa_variavel`
+-- Table `corretora_investimentos_db`.`renda_fixa_variavel`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`renda_fixa_variavel` ;
+DROP TABLE IF EXISTS `corretora_investimentos_db`.`renda_fixa_variavel` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`renda_fixa_variavel` (
+CREATE TABLE IF NOT EXISTS `corretora_investimentos_db`.`renda_fixa_variavel` (
   `idrenda_fixa_variavel` INT NOT NULL,
   `classe` VARCHAR(45) NULL,
   `vencimento(meses)` VARCHAR(45) NULL,
@@ -389,18 +390,18 @@ CREATE TABLE IF NOT EXISTS `mydb`.`renda_fixa_variavel` (
   INDEX `fk_renda_fixa_variavel_empresa_emissora1_idx` (`empresa_emissora_idempresa_emissora` ASC) VISIBLE,
   CONSTRAINT `fk_renda_fixa_variavel_empresa_emissora1`
     FOREIGN KEY (`empresa_emissora_idempresa_emissora`)
-    REFERENCES `mydb`.`empresa_emissora` (`idempresa_emissora`)
+    REFERENCES `corretora_investimentos_db`.`empresa_emissora` (`idempresa_emissora`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`conta_corrente`
+-- Table `corretora_investimentos_db`.`conta_corrente`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`conta_corrente` ;
+DROP TABLE IF EXISTS `corretora_investimentos_db`.`conta_corrente` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`conta_corrente` (
+CREATE TABLE IF NOT EXISTS `corretora_investimentos_db`.`conta_corrente` (
   `idconta_corrente` INT NOT NULL,
   `cod_banco` VARCHAR(45) NULL,
   `cod_agencia` VARCHAR(45) NULL,
@@ -410,11 +411,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`conta_corrente_aplica_fundo_investimento`
+-- Table `corretora_investimentos_db`.`conta_corrente_aplica_fundo_investimento`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`conta_corrente_aplica_fundo_investimento` ;
+DROP TABLE IF EXISTS `corretora_investimentos_db`.`conta_corrente_aplica_fundo_investimento` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`conta_corrente_aplica_fundo_investimento` (
+CREATE TABLE IF NOT EXISTS `corretora_investimentos_db`.`conta_corrente_aplica_fundo_investimento` (
   `conta_corrente_idconta_corrente` INT NOT NULL,
   `fundo_investimento_idfundo_investimento` INT NOT NULL,
   PRIMARY KEY (`conta_corrente_idconta_corrente`, `fundo_investimento_idfundo_investimento`),
@@ -422,23 +423,23 @@ CREATE TABLE IF NOT EXISTS `mydb`.`conta_corrente_aplica_fundo_investimento` (
   INDEX `fk_conta_corrente_has_fundo_investimento_conta_corrente1_idx` (`conta_corrente_idconta_corrente` ASC) VISIBLE,
   CONSTRAINT `fk_conta_corrente_has_fundo_investimento_conta_corrente1`
     FOREIGN KEY (`conta_corrente_idconta_corrente`)
-    REFERENCES `mydb`.`conta_corrente` (`idconta_corrente`)
+    REFERENCES `corretora_investimentos_db`.`conta_corrente` (`idconta_corrente`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_conta_corrente_has_fundo_investimento_fundo_investimento1`
     FOREIGN KEY (`fundo_investimento_idfundo_investimento`)
-    REFERENCES `mydb`.`fundo_investimento` (`idfundo_investimento`)
+    REFERENCES `corretora_investimentos_db`.`fundo_investimento` (`idfundo_investimento`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`conta_corrente_aplica_tesouro_direto`
+-- Table `corretora_investimentos_db`.`conta_corrente_aplica_tesouro_direto`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`conta_corrente_aplica_tesouro_direto` ;
+DROP TABLE IF EXISTS `corretora_investimentos_db`.`conta_corrente_aplica_tesouro_direto` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`conta_corrente_aplica_tesouro_direto` (
+CREATE TABLE IF NOT EXISTS `corretora_investimentos_db`.`conta_corrente_aplica_tesouro_direto` (
   `conta_corrente_idconta_corrente` INT NOT NULL,
   `tesouro_direto_idtesouro_direto` INT NOT NULL,
   `tesouro_direto_indexador_t_dir_idindexador_t_dir` INT NOT NULL,
@@ -447,23 +448,23 @@ CREATE TABLE IF NOT EXISTS `mydb`.`conta_corrente_aplica_tesouro_direto` (
   INDEX `fk_conta_corrente_has_tesouro_direto_conta_corrente1_idx` (`conta_corrente_idconta_corrente` ASC) VISIBLE,
   CONSTRAINT `fk_conta_corrente_has_tesouro_direto_conta_corrente1`
     FOREIGN KEY (`conta_corrente_idconta_corrente`)
-    REFERENCES `mydb`.`conta_corrente` (`idconta_corrente`)
+    REFERENCES `corretora_investimentos_db`.`conta_corrente` (`idconta_corrente`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_conta_corrente_has_tesouro_direto_tesouro_direto1`
     FOREIGN KEY (`tesouro_direto_idtesouro_direto` , `tesouro_direto_indexador_t_dir_idindexador_t_dir`)
-    REFERENCES `mydb`.`tesouro_direto` (`idtesouro_direto` , `indexador_t_dir_idindexador_t_dir`)
+    REFERENCES `corretora_investimentos_db`.`tesouro_direto` (`idtesouro_direto` , `indexador_t_dir_idindexador_t_dir`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`conta_corrente_aplica_renda_fixa_variavel`
+-- Table `corretora_investimentos_db`.`conta_corrente_aplica_renda_fixa_variavel`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`conta_corrente_aplica_renda_fixa_variavel` ;
+DROP TABLE IF EXISTS `corretora_investimentos_db`.`conta_corrente_aplica_renda_fixa_variavel` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`conta_corrente_aplica_renda_fixa_variavel` (
+CREATE TABLE IF NOT EXISTS `corretora_investimentos_db`.`conta_corrente_aplica_renda_fixa_variavel` (
   `conta_corrente_idconta_corrente` INT NOT NULL,
   `renda_fixa_variavel_idrenda_fixa_variavel` INT NOT NULL,
   PRIMARY KEY (`conta_corrente_idconta_corrente`, `renda_fixa_variavel_idrenda_fixa_variavel`),
@@ -471,23 +472,23 @@ CREATE TABLE IF NOT EXISTS `mydb`.`conta_corrente_aplica_renda_fixa_variavel` (
   INDEX `fk_conta_corrente_has_renda_fixa_variavel_conta_corrente1_idx` (`conta_corrente_idconta_corrente` ASC) VISIBLE,
   CONSTRAINT `fk_conta_corrente_has_renda_fixa_variavel_conta_corrente1`
     FOREIGN KEY (`conta_corrente_idconta_corrente`)
-    REFERENCES `mydb`.`conta_corrente` (`idconta_corrente`)
+    REFERENCES `corretora_investimentos_db`.`conta_corrente` (`idconta_corrente`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_conta_corrente_has_renda_fixa_variavel_renda_fixa_variavel1`
     FOREIGN KEY (`renda_fixa_variavel_idrenda_fixa_variavel`)
-    REFERENCES `mydb`.`renda_fixa_variavel` (`idrenda_fixa_variavel`)
+    REFERENCES `corretora_investimentos_db`.`renda_fixa_variavel` (`idrenda_fixa_variavel`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`pessoa_has_conta_corrente`
+-- Table `corretora_investimentos_db`.`pessoa_has_conta_corrente`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`pessoa_has_conta_corrente` ;
+DROP TABLE IF EXISTS `corretora_investimentos_db`.`pessoa_has_conta_corrente` ;
 
-CREATE TABLE IF NOT EXISTS `mydb`.`pessoa_has_conta_corrente` (
+CREATE TABLE IF NOT EXISTS `corretora_investimentos_db`.`pessoa_has_conta_corrente` (
   `pessoa_idpessoa` INT NOT NULL,
   `pessoa_sexo_idsexo` INT NOT NULL,
   `pessoa_estado_civil_idestado_civil` INT NOT NULL,
@@ -502,12 +503,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`pessoa_has_conta_corrente` (
   INDEX `fk_pessoa_has_conta_corrente_pessoa1_idx` (`pessoa_idpessoa` ASC, `pessoa_sexo_idsexo` ASC, `pessoa_estado_civil_idestado_civil` ASC, `pessoa_naturalidade_idnaturalidade` ASC, `pessoa_cargo_has_filiacao_cargo_idcargo` ASC, `pessoa_cargo_has_filiacao_filiacao_idfiliacao` ASC, `pessoa_endereco_idendereco` ASC, `pessoa_escolaridade_idescolaridade` ASC) VISIBLE,
   CONSTRAINT `fk_pessoa_has_conta_corrente_pessoa1`
     FOREIGN KEY (`pessoa_idpessoa` , `pessoa_sexo_idsexo` , `pessoa_estado_civil_idestado_civil` , `pessoa_naturalidade_idnaturalidade` , `pessoa_cargo_has_filiacao_cargo_idcargo` , `pessoa_cargo_has_filiacao_filiacao_idfiliacao` , `pessoa_endereco_idendereco` , `pessoa_escolaridade_idescolaridade`)
-    REFERENCES `mydb`.`pessoa` (`idpessoa` , `sexo_idsexo` , `estado_civil_idestado_civil` , `naturalidade_idnaturalidade` , `cargo_has_filiacao_cargo_idcargo` , `cargo_has_filiacao_filiacao_idfiliacao` , `endereco_idendereco` , `escolaridade_idescolaridade`)
+    REFERENCES `corretora_investimentos_db`.`pessoa` (`idpessoa` , `sexo_idsexo` , `estado_civil_idestado_civil` , `naturalidade_idnaturalidade` , `cargo_has_filiacao_cargo_idcargo` , `cargo_has_filiacao_filiacao_idfiliacao` , `endereco_idendereco` , `escolaridade_idescolaridade`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_pessoa_has_conta_corrente_conta_corrente1`
     FOREIGN KEY (`conta_corrente_idconta_corrente`)
-    REFERENCES `mydb`.`conta_corrente` (`idconta_corrente`)
+    REFERENCES `corretora_investimentos_db`.`conta_corrente` (`idconta_corrente`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
