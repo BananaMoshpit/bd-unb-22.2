@@ -492,7 +492,7 @@ VALUES(
 "Renda Variável");
 
 
-https://www2.orama.com.br/investimentos/fundos-de-investimento/Vinland-Macro-FIC-FIM
+-- https://www2.orama.com.br/investimentos/fundos-de-investimento/Vinland-Macro-FIC-FIM
 INSERT INTO `mydb`.`fundo_investimento`
 (`id_fundo_investimento`,
 `nome_produto`,

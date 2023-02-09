@@ -1,5 +1,5 @@
 
-DROP VIEW IF EXISTS todos_investidores;
+-- DROP VIEW IF EXISTS todos_investidores;
 CREATE VIEW todos_investidores AS
 select
   usuario.nome, usuario.renda_mensal,
@@ -31,7 +31,7 @@ usuario_has_fundo_investimento.fundo_investimento_id_fundo_investimento
 ORDER BY pctg_renda_por_invest_total DESC;
 
 
-DROP VIEW if exists nomes_investindo_tesouro;
+-- DROP VIEW if exists nomes_investindo_tesouro;
 CREATE VIEW nomes_investindo_tesouro AS
 select
   usuario.nome, usuario.renda_mensal,
@@ -49,7 +49,7 @@ left JOIN tesouro_direto
 ON tesouro_direto.id_tesouro_direto = 
 usuario_has_tesouro_direto.tesouro_direto_id_tesouro_direto;
 
-DROP VIEW IF EXISTS nomes_investindo_fixa_var ;
+-- DROP VIEW IF EXISTS nomes_investindo_fixa_var ;
 CREATE VIEW nomes_investindo_fixa_var AS
 select
   usuario.nome, usuario.renda_mensal,
@@ -67,7 +67,7 @@ left JOIN renda_fixa_variavel
 ON renda_fixa_variavel.id_renda_fixa_variavel = 
 usuario_has_renda_fixa_variavel.renda_fixa_variavel_id_renda_fixa_variavel;
 
-DROP VIEW IF EXISTS nomes_investindo_renda;
+-- DROP VIEW IF EXISTS nomes_investindo_renda;
 CREATE VIEW nomes_investindo_renda AS
 select
   usuario.nome, usuario.renda_mensal,
@@ -89,7 +89,7 @@ usuario_has_fundo_investimento.fundo_investimento_id_fundo_investimento;
 DELIMITER $$
 
 
-DROP PROCEDURE IF EXISTS `top_investidores_percentuais` ;
+-- DROP PROCEDURE IF EXISTS `top_investidores_percentuais` ;
 CREATE PROCEDURE `top_investidores_percentuais` ()
 BEGIN
 CREATE TABLE IF NOT EXISTS top_investidores_percentuais AS
@@ -163,4 +163,3 @@ END $$
 -- LIMIT COUNT(top_investidores_percentuais.pctg_renda_por_invest_total)/2;
 
 -- call `maiores_investidores_percentuais_DESC`$$
-
