@@ -1,5 +1,5 @@
 
--- DROP VIEW IF EXISTS todos_investidores;
+DROP VIEW IF EXISTS todos_investidores;
 CREATE VIEW todos_investidores AS
 select
   usuario.nome, usuario.renda_mensal,
@@ -31,7 +31,7 @@ usuario_has_fundo_investimento.fundo_investimento_id_fundo_investimento
 ORDER BY pctg_renda_por_invest_total DESC;
 
 
--- DROP VIEW if exists nomes_investindo_tesouro;
+DROP VIEW if exists nomes_investindo_tesouro;
 CREATE VIEW nomes_investindo_tesouro AS
 select
   usuario.nome, usuario.renda_mensal,
@@ -49,7 +49,7 @@ left JOIN tesouro_direto
 ON tesouro_direto.id_tesouro_direto = 
 usuario_has_tesouro_direto.tesouro_direto_id_tesouro_direto;
 
--- DROP VIEW IF EXISTS nomes_investindo_fixa_var ;
+DROP VIEW IF EXISTS nomes_investindo_fixa_var ;
 CREATE VIEW nomes_investindo_fixa_var AS
 select
   usuario.nome, usuario.renda_mensal,
@@ -67,7 +67,7 @@ left JOIN renda_fixa_variavel
 ON renda_fixa_variavel.id_renda_fixa_variavel = 
 usuario_has_renda_fixa_variavel.renda_fixa_variavel_id_renda_fixa_variavel;
 
--- DROP VIEW IF EXISTS nomes_investindo_renda;
+DROP VIEW IF EXISTS nomes_investindo_renda;
 CREATE VIEW nomes_investindo_renda AS
 select
   usuario.nome, usuario.renda_mensal,
@@ -84,13 +84,10 @@ ON fundo_investimento.id_fundo_investimento =
 usuario_has_fundo_investimento.fundo_investimento_id_fundo_investimento;
 
 
-
--- PROCEDIMENTO PRA VER TODOS CLIENTES COM FUNDO IVESTIMENTO
+-- PROCEDIMENTO PRA VER CLIENTES COM INVESTIMENTO PERCENTUAL RENDA_MENSAL/INVESGTIMENTOS TOTAIS ACIMA DA MÉDIA
 DELIMITER $$
-
-
--- DROP PROCEDURE IF EXISTS `top_investidores_percentuais` ;
-CREATE PROCEDURE `top_investidores_percentuais` ()
+DROP PROCEDURE IF EXISTS `top_investidores_percentuais` ;
+CREATE PROCEDURE IF NOT EXISTS `top_investidores_percentuais` ()
 BEGIN
 CREATE TABLE IF NOT EXISTS top_investidores_percentuais AS
 select
@@ -122,44 +119,5 @@ ON fundo_investimento.id_fundo_investimento =
 usuario_has_fundo_investimento.fundo_investimento_id_fundo_investimento
 ORDER BY pctg_renda_por_invest_total DESC;
 
+select * FROM top_investidores_percentuais where pctg_renda_por_invest_total > (SELECT AVG(pctg_renda_por_invest_total) FROM top_investidores_percentuais);
 END $$
-
--- abaixo seguem notações das tentativas de selecionar os nomes na metade de maior percentagem de investimento/renda mensal
--- deu ruim
--- DECLARE @halfway AS INT := 0;$$
--- SET @min :=  avg(top_investidores_percentuais.pctg_renda_por_invest_total)
--- SET @halfway = MIN(top_investidores_percentuais.pctg_renda_por_invest_total) +
--- (MAX(top_investidores_percentuais.pctg_renda_por_invest_total)-MIN(top_investidores_percentuais.pctg_renda_por_invest_total))/2;
-
--- select avg(top_investidores_percentuais.pctg_renda_por_invest_total) as median'
-
--- select pctg_renda_por_invest_total FROM top_investidores_percentuais HAVING pctg_renda_por_invest_total >=AVG(pctg_renda_por_invest_total);
-
--- select pctg_renda_por_invest_total FROM top_investidores_percentuais 
--- GROUP BY top_investidores_percentuais.pctg_renda_por_invest_total
--- HAVING pctg_renda_por_invest_total >= AVG(pctg_renda_por_invest_total);
-
--- SELECT TOP (20)  nome, 
---     pctg_renda_por_invest_total
--- FROM top_investidores_percentuais;
-
-
--- SELECT TOP (1) WITH TIES	 Name, 
---     ProductNumber, 
---     StandardCost
--- FROM Production.Product
--- ORDER BY StandardCost DESC
-
--- SELECT CAST(
---              CASE
---                   WHEN pctg_renda_por_invest_total >= MIN(top_investidores_percentuais.pctg_renda_por_invest_total) + (MAX(top_investidores_percentuais.pctg_renda_por_invest_total) - MIN(top_investidores_percentuais.pctg_renda_por_invest_total))/2
---                      THEN 1
---                   ELSE 0
---              END) *
--- FROM top_investidores_percentuais
-
--- select * from top_investidores_percentuais
--- WHERE top_investidores_percentuais.pctg_renda_por_invest_total >= MIN(top_investidores_percentuais.pctg_renda_por_invest_total) + (MAX(top_investidores_percentuais.pctg_renda_por_invest_total) - MIN(top_investidores_percentuais.pctg_renda_por_invest_total))/2;
--- LIMIT COUNT(top_investidores_percentuais.pctg_renda_por_invest_total)/2;
-
--- call `maiores_investidores_percentuais_DESC`$$
