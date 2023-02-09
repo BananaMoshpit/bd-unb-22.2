@@ -1,0 +1,44 @@
+<html>
+<head>
+	<title>Adioconar Investimento em Tesouro Direto</title>
+</head>
+
+<body>
+	<a href="index.php">Pagina incial</a> | <a href="view.php">Ver seus investimentos</a>
+	<br/><br/>
+
+	<form action="add_tesouro.php" method="post" name="form1">
+		<table width="25%" border="0">
+			<tr> 
+				<td>Nome do investimento</td>
+				<td><input type="text" name="nome"></td>
+			</tr>
+            <tr> 
+				<td>Digite o digito do indexador (1 para IPCA, 2 para SELIC e 3 para IPG)</td>
+				<td><input type="text" name="indexador_tes_dir"></td>
+			</tr>
+			<tr> 
+				<td>Vencimento do investimento</td>
+				<td><input type="date" name="vencimento"></td>
+			</tr>
+			<tr> 
+				<td>Valor do juro mensal do investimento</td>
+				<td><input type="text" name="juro_mensal"></td>
+			</tr>
+			<tr> 
+				<td>Valor do juro anual do investimento</td>
+				<td><input type="text" name="juro_anual"></td>
+			</tr>
+            <tr> 
+				<td>Valor unitario do investimento</td>
+				<td><input type="text" name="valor"></td>
+			</tr>
+			<tr> 
+				<td></td>
+				<td><input type="submit" name="Submit" value="Adicionar investimento em tesouro direto"></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
+
